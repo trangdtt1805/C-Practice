@@ -9,26 +9,53 @@ using namespace std;
 struct student
 {
 	int id;
-	char name[200];
+	string name;
 	float score;
 };
 typedef student *st;
 
 list<student> ListStudent;
 
+int checkID(int id)
+{
+	list<student> :: iterator it;
+	for(it = ListStudent.begin(); it != ListStudent.end(); ++it) 
+    {
+		if (it->id == id) return 1;
+		else 0; 
+	}
+}
 void InputStudent()
 {
 	int n;
+	float diem;
 	cout<<"Enter number student: "; cin>>n;
 	for (int i = 1; i<=n;i++)
 	{
-		cout<<"Studen "<<i<<endl;
+	    cout<<"\nStuden "<<i<<endl;
 		st student1 = new(student);
-		cout<<"Enter ID: "; cin>>student1->id;
-		cout<<"\nEnter name: "; cin>>student1->name;
-		cout<<"\nEnter score: "; cin>>student1->score;
+		cout<<"Enter ID: "; 
+		cin>>student1->id;
+		do
+		{
+			if (checkID(student1->id) == 1)
+			{
+			 cout<<"Again: ";
+			 cin>>student1->id;
+	
+			}
+			
+		} while (checkID(student1->id) == 1);
 		
-		
+		cout<<"Enter name: ";
+		cin.ignore();
+		getline(cin,student1->name);
+		do
+		{
+			cout<<"Enter score: "; cin>>diem;
+		} while (diem >10 || diem <0);
+		student1->score = diem;
+		//add list
 		ListStudent.push_back(*student1);
 	}
 }
@@ -87,7 +114,7 @@ int Menu()
 
 int main()
 {
-	//ListStudent l;
+	std::ifstream fileInput("E:/Internship.Tools/Train/C-Practice/Student/New.txt");
 	Menu();
 	return 0;
 }
