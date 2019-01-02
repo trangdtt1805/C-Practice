@@ -3,139 +3,222 @@
 #include <stdlib.h>
 #include <conio.h>
 
+#define max 3
+
 using namespace std;
 
-char Matrix[3][3] = {'1','2','3','4','5','6','7','8','9'};
-
-void board()
+void Board(char Matrix[max][max])
 {
 	system("cls");
 	cout<<"       Tictactoe\n"<<endl;
 
-	cout<<"Player 1 (X)  -  Player 2 (O)"<<endl<<endl;
+	cout<<"Player 1 (O)  -  Player 2 (X)"<<endl<<endl;
 	cout<<endl;
 	cout<<"           "<<Matrix[0][0]<<"  |  "<<Matrix[0][1] << "  |  " << Matrix[0][2]<<endl;
 	cout<<"           " << Matrix[1][0] << "  |  "<<Matrix[1][1]<<"  |  "<<Matrix[1][2]<<endl;
 	cout<<"           "<< Matrix[2][0]<<"  |  "<<Matrix[2][1]<<"  |  "<<Matrix[2][2]<<endl;
-  }
-void Playgame()
-{
-	board();
-	char Player1[20];
-	char Player2[20];
-	cout<<"Enter Player 1 Name: "; cin>>Player1;
-	cout<<"Enter Player 2 Name: "; cin>>Player2;
-	//cout<<"\nPlease enter the numberrow_ numbercolum [12]";
-    char mark;
-    int choice;
-    for ( int k = 1; k < 10 ; k ++) {
+}
 
-        if ( k%2 == 0) {
-            cout << "Your turn "<<Player1<< endl;
-            mark = 'X';
-        }
-        else {
-            cout<<"Your turn "<<Player2<< endl;
-            mark = 'O';
-        }
-        cout << "Please enter your choice" << endl;
-        cin >> choice;
-        switch(choice)
-        {
-        	case 1:Matrix[0][0]=mark;
-        			board();
-        			break;
-        	case 2:Matrix[0][1]=mark;
-        			board();
-        			break;
-        	case 3:Matrix[0][2]=mark;
-        			board();
-        			break;
-        	case 4:Matrix[1][0]=mark;
-        			board();
-        			break;
-      	    case 5:Matrix[1][1]=mark;
-        			board();
-        			break;
-        	case 6:Matrix[1][2]=mark;
-        			board();
-        			break;
-        	case 7:Matrix[2][0]=mark;
-        			board();
-        			break;
-        	case 8:Matrix[2][1]=mark;
-        			board();
-        			break;
-        	case 9:Matrix[2][2]=mark;
-        			board();
-        			break;		
-		}	
-		if ((Matrix[0][0] == 'X' && Matrix[0][1] == 'X' && Matrix[0][2] == 'X')
-		|| (Matrix[1][0] == 'X' && Matrix[1][1] == 'X' && Matrix[1][2] == 'X')
-		|| (Matrix[2][0] == 'X' && Matrix[2][1] == 'X' && Matrix[2][2] == 'X')
-			|| (Matrix[0][0] == 'X' && Matrix[1][0] == 'X' && Matrix[2][0] == 'X')
-			|| (Matrix[0][1] == 'X' && Matrix[1][1] == 'X' && Matrix[2][1] == 'X')
-			|| (Matrix[0][2] == 'X' && Matrix[1][2] == 'X' && Matrix[2][2] == 'X')
-				|| (Matrix[0][0] == 'X' && Matrix[1][1] == 'X' && Matrix[2][2] == 'X')
-				|| (Matrix[0][2] == 'X' && Matrix[1][1] == 'X' && Matrix[2][0] == 'X')
-				|| (Matrix[0][0] != '1' && Matrix[0][1] != '2' && Matrix[0][2] != '3' 
-        			&& Matrix[1][0] != '4' && Matrix[1][1] != '5' && Matrix[1][2]!= '6' 
-       				&& Matrix[2][0] != '7' && Matrix[2][1] != '8' && Matrix[2][2] != '9'))
-    	{
-			cout<<Player1<<" Win"; 
-			getch();
-			//exit(0);
+bool checkEmpty(char Matrix[max][max], int a, int b) 
+{
+	if (Matrix[a][b] == ' ') return true;
+	else return false;
+}
+
+int getGameStatus(char Matrix[max][max]) {
+	int win = 0;
+	if (win == 0) {
+		for (int i = 0; i < max; i++) {
+			switch (Matrix[i][0])
+			{
+			case 'X':
+				if (Matrix[i][0] == Matrix[i][1] && Matrix[i][1] == Matrix[i][2])
+					win = 1;
+				break;
+			case 'O':
+				if (Matrix[i][0] == Matrix[i][1] && Matrix[i][1] == Matrix[i][2])
+					win = 2;
+				break;
+			default:
+				break;
+			}
 		}
-		else if ((Matrix[0][0] == 'O' && Matrix[0][1] == 'O' && Matrix[0][2] == 'O')
-			|| (Matrix[1][0] == 'O' && Matrix[1][1] == 'O' && Matrix[1][2] == 'O')
-			|| (Matrix[2][0] == 'O' && Matrix[2][1] == 'O' && Matrix[2][2] == 'O')
-				|| (Matrix[0][0] == 'O' && Matrix[1][0] == 'O' && Matrix[2][0] == 'O')
-				|| (Matrix[0][1] == 'O' && Matrix[1][1] == 'O' && Matrix[2][1] == 'O')
-				|| (Matrix[0][2] == 'O' && Matrix[1][2] == 'O' && Matrix[2][2] == 'O')
-					|| (Matrix[0][0] == 'O' && Matrix[1][1] == 'O' && Matrix[2][2] == 'O')
-					|| (Matrix[0][2] == 'O' && Matrix[1][1] == 'O' && Matrix[2][0] == 'O')
-					|| (Matrix[0][0] != '1' && Matrix[0][1] != '2' && Matrix[0][2] != '3'
-        				&& Matrix[1][0] != '4' && Matrix[1][1] != '5' && Matrix[1][2]!= '6'
-       					&& Matrix[2][0] != '7' && Matrix[2][1] != '8' && Matrix[2][2] != '9'))
-  		    {
-				cout<<Player2<<" Win"; 
-				getch();
-				//exit(0);
+		if (win == 0) {
+			for (int j = 0; j < max; j++) {
+				switch (Matrix[0][j])
+				{
+				case 'O':
+					if (Matrix[0][j] == Matrix[1][j] && Matrix[1][j] == Matrix[2][j])
+						win = 1;
+					break;
+				case 'X':
+					if (Matrix[0][j] == Matrix[1][j] && Matrix[1][j] == Matrix[2][j])
+						win = 2;
+					break;
+				default:
+					break;
+				}
 			}
-			else {
-			cout<<"Game draw!!!";
+		
+		if (win == 0) {
+				switch (Matrix[0][0])
+				{
+				case 'O':
+					if (Matrix[0][0] == Matrix[1][1] && Matrix[1][1] == Matrix[2][2])
+						win = 1;
+					break;
+				case 'X':
+					if (Matrix[0][0] == Matrix[1][1] && Matrix[1][1] == Matrix[2][2])
+						win = 2;
+					break;
+				default:
+					break;
+				}
+		
+		
+		if (win == 0)
+			switch (Matrix[0][2])
+			{
+			case 'O':
+				if (Matrix[0][2] == Matrix[1][1] && Matrix[2][0] == Matrix[1][1])
+					win = 1;
+				break;
+			case 'X':
+				if (Matrix[0][2] == Matrix[1][1] && Matrix[2][0] == Matrix[1][1])
+					win = 2;
+				break;
+			default:
+				break;
 			}
-	}		
+	}}}
+	return win;
+}
+
+
+int PlayGame(char Matrix[max][max], char NamePlayer1[20], char NamePlayer2[20], string check)
+{
+	int player=1,count=0;
+	int number, row, column;
+	do
+	{
+		switch(player)
+		{
+			case 1: 
+				cout<<NamePlayer1<<" enter number: "; cin>>number;
+				row = number/10-1;//hàng
+				column = number%10-1; //cot
+				
+				if (checkEmpty(Matrix,row,column) == true) Matrix[row][column] = 'O';
+				else
+				{
+					do
+					{
+						cout<<"Please enter number: "; cin>>number;
+						row = number/10-1;//hàng
+						column = number%10-1; //cot
+					} while (checkEmpty(Matrix,row,column) == false);
+					  Matrix[row][column] = 'X';
+				}
+				Board(Matrix);
+				switch (getGameStatus(Matrix))
+				{
+				case 1: cout << "PLAYER 1 WIN!!!" << endl;
+					check = "win";
+					break;
+				case 2: cout << "PLAYER 2 WIN!!!" << endl;
+					check = "win";
+					break;
+				default:
+					break;
+				}	
+			if (check =="playing")
+			{
+				player++;
+				count++;
+			}
+			if (count == 9) {
+			cout << "DRAW GAME!!!"<<endl;
+			check = "draw";
+			break;
+			}
+			
+				
+				break;
+			case 2:
+				cout<<NamePlayer2<<" enter number: "; cin>>number;
+				row = number/10-1;//hàng
+				column = number%10-1; //cot
+				
+				if (checkEmpty(Matrix,row,column)) Matrix[row][column] = 'X';
+				else
+				{
+					do
+					{
+						cout<<"Please enter number: "; cin>>number;
+						row = number/10-1;//hàng
+						column = number%10-1; //cot
+					} while (checkEmpty(Matrix,row,column) == false);
+					  Matrix[row][column] = 'O';
+				}
+				Board(Matrix);
+				switch (getGameStatus(Matrix))
+				{
+				case 1: cout << "PLAYER 1 WIN!!!" << endl;
+					check = "win";
+					break;
+				case 2: cout << "PLAYER 2 WIN!!!" << endl;
+					check = "win";
+					break;
+				default:
+					break;
+				}	
+				
+			if (check =="playing"){
+				player--;
+				count++;
+			}	
+				break;	
+			
+					
+	}} while (check == "playing");
 }
 int main()
 {
+	char Matrix[max][max] = {' ',' ',' ',' ',' ',' ',' ',' ',' '};
+	int choice;
+	char NamePlayer1[20], NamePlayer2[20],a;
+	string kt="playing";
 	cout<<"      Welcome To Tic-tac-toe game! Play with your way!"<<endl;
 	cout<<"\nIf you find any problem, please contact dttt@gameloft.com\n"<<endl;
-	int chon,chon1;
-	string x;
 	
-	do{
-		cout<<"Chose: \n";
+	cout<<"Select your mode \n";
 		cout<<"1. Play game\n";
 		cout<<"2. Exit\n";
-		cout<<"chon (1/2): "; cin>>chon;	
-		while (chon>2)
-	{
-		cout<<"Moi ban chon lai: ";
-		cin>>chon1;
-		chon = chon1;	
-	} switch (chon)
+		cout<<"You choice (1/2): "; cin>>choice;
+		cout<<"Enter your name Player 1: "; cin>>NamePlayer1;
+				cout<<"\nEntern your name Player 2: "; cin>>NamePlayer2;	
+	do{
+		for (int i=0;i<3;i++)
+		{
+			for (int j=0;j<3;j++)
+			{
+				Matrix[i][j] = ' ';
+			}
+		}
+		
+		switch (choice)
 		{
 			case 1:
-				Playgame();
+				
+				Board(Matrix);
+				
+				PlayGame(Matrix, NamePlayer1, NamePlayer2,kt);
 				break;
 			case 2:
 				exit;
 				break;
 		}
-		cout<<"\nTiep tuc (y/n): ";cin>>x;
-		} while(x == "y");	
-	
+		cout<<"ban co muon tiep tuc k (y/n)"; cin>>a;	
+	} while ( a=='y' || a == 'Y');
 	getch();
-
 }
