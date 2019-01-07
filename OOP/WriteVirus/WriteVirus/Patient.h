@@ -24,8 +24,10 @@ public:
 
 	void InitResistance();
 	void DoStart();
-	void TakeMedicine();
+	void TakeMedicine(int);
 	void DoDie();
+
+	void DeleteListVirus();
 
 };
 
