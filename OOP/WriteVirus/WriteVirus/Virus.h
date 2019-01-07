@@ -1,5 +1,7 @@
 ﻿#pragma once
+
 #include <vector>
+
 class Virus
 {
 
@@ -11,8 +13,10 @@ public:
 	Virus();
 	~Virus();
 
+	Virus(const Virus *);
+
 	void LoadADNInformation​();
-	int ReduceResistance​(int medicine_resistance);
+	int ReduceResistance​(int);
 
 	virtual void DoBorn() = 0;
 	virtual std::vector<Virus*> Virus::DoClone() = 0;	

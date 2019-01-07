@@ -6,11 +6,18 @@
 using namespace std;
 
 Virus::Virus(){
-	// the virus resistance ability (10 – 30) 
 	this->m_resistance = rand() % 21 + 10;
 }
 
-Virus::~Virus(){}
+Virus::Virus(const Virus *virus)
+{
+	this->m_dna = virus->m_dna;
+	this->m_resistance = virus->m_resistance;
+}
+
+Virus::~Virus(){
+	delete this;
+}
 
 void Virus::set_m_dna(char* m_dna)
 {
