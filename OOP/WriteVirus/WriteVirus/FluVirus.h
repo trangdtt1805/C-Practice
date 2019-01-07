@@ -1,6 +1,9 @@
 #pragma once
+#include <iostream>
 #include "Virus.h"
-#include <list>
+#include <vector>
+
+using namespace std;
 
 
 class FluVirus : public Virus
@@ -17,8 +20,7 @@ public:
 	int get_m_Color();
 
 	void DoBorn() override;
-	std::list<Virus*> FluVirus::DoClone() override;
+	std::vector<Virus*> FluVirus::DoClone() override;
 	void DoDie() override;
 	void InitResistance() override;
-
-}
+};

@@ -1,9 +1,7 @@
 ﻿#include "FluVirus.h"
 #include "Virus.h"
-#include <list>
+#include <vector>
 #include <iostream>
-
-using namespace std;
 
 FluVirus::FluVirus(){
 	this->DoBorn();
@@ -41,9 +39,9 @@ void FluVirus::DoBorn()
 	}
 }
 
-list<Virus*> FluVirus::DoClone()
+vector<Virus*> FluVirus::DoClone()
 {
-	list<Virus*> listVirus;
+	vector<Virus*> listVirus;
 	FluVirus *virus = new FluVirus(*this);
 	listVirus.push_back(virus);
 	return listVirus;
@@ -60,11 +58,11 @@ void FluVirus::InitResistance()
 	if (m_Color == 1)
 	{
 		int random = rand() % 6 + 10;
-		this->set_m_resistance;
+		this->set_m_resistance(random);
 	}
 	if (m_Color == 2)
 	{
 		int random = rand() % 11 + 10;
-		this->set_m_resistance;
+		this->set_m_resistance(random);
 	}
 }
