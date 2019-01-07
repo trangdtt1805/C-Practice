@@ -2,7 +2,7 @@
 #include <iostream>
 #include "Virus.h"
 #include<iostream>
-#include <list>
+#include <vector>
 
 using namespace std;
 
@@ -10,7 +10,7 @@ class Patient
 {
 private:
 	int m_resistance;
-	list<Virus*> m_virusList;
+	vector<Virus*> m_virusList;
 	int m_state;
 public:
 	Patient();
@@ -18,12 +18,12 @@ public:
 
 	void set_m_resistance(int);
 	int get_m_resistance();
-	void set_m_state(int);
+
 	int get_m_state();
 
 
 	void InitResistance();
-	list<Virus*> Patient::DoStart();
+	void DoStart();
 	void TakeMedicine();
 	void DoDie();
 

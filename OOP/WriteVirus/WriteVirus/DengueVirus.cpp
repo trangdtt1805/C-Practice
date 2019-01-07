@@ -13,13 +13,13 @@ DengueVirus::DengueVirus(){
 
 DengueVirus::~DengueVirus(){}
 
-void DengueVirus::set_m_protein(char c)
+void DengueVirus::set_m_protein(string c)
 {
 	this->m_protein = c;
 }
-char DengueVirus::get_m_protein()
+string DengueVirus::get_m_protein()
 {
-	return m_protein;
+	return this->m_protein;
 }
 
 void DengueVirus::DoBorn()
@@ -39,30 +39,33 @@ void DengueVirus::DoBorn()
 		this->m_protein = "E";
 	}
 }
-std::list<Virus*> DengueVirus::DoClone()
+
+std::vector<Virus*> DengueVirus::DoClone()
 {
-	list<Virus*> listVirus;
+	vector<Virus*> listVirus;
 	DengueVirus *dengue_virus = new DengueVirus(*this);
 	listVirus.push_back(dengue_virus);
 	return listVirus;
 }
+
 void DengueVirus::DoDie()
 {
 	delete this;
 }
+
 void DengueVirus::InitResistance()
 {
-	if (m_protein == 1)
+	if (this->m_protein == "NS3")
 	{
 		int random = rand() % 10 + 1;
 		this->set_m_resistance(random);
 	}
-	if (m_protein == 2)
+	if (this->m_protein == "NS5")
 	{
 		int random = rand() % 10 + 11;
 		this->set_m_resistance(random);
 	}
-	if (m_protein == 3)
+	if (this->m_protein == "E")
 	{
 		int random = rand() % 10 + 21;
 		this->set_m_resistance(random);

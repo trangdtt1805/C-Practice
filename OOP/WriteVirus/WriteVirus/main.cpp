@@ -11,12 +11,12 @@ int main()
 {
 	
 	Patient *p = new Patient;
-	char t = 0;
-	while (p->get_m_state() == 1)
+	char t = '1';
+	while ((p->get_m_state() == 1) && t == '1' )
 	{
 		cout << "Take Medicine (0 = NO, 1 = YES) ";
 		cin >> t;
-		if (t == 1)
+		if (t == '1')
 		{
 			p->TakeMedicine();
 		}

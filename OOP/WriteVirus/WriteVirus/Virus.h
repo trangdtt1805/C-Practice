@@ -2,9 +2,11 @@
 #include <vector>
 class Virus
 {
+
 private:
 	char* m_dna;
 	int m_resistance;
+
 public:
 	Virus();
 	~Virus();

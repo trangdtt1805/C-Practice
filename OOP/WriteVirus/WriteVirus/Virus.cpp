@@ -49,5 +49,5 @@ void Virus::LoadADNInformation​()
 
 int Virus::ReduceResistance​(int medicine_resistance)
 {
-	return m_resistance = m_resistance - medicine_resistance;
+	return this->m_resistance = this->m_resistance - medicine_resistance;
 }
