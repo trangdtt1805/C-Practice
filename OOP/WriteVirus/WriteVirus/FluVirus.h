@@ -16,6 +16,8 @@ public:
 	FluVirus();
 	~FluVirus();
 	
+	FluVirus(const FluVirus *);
+
 	void set_m_Color(int);
 	int get_m_Color();
 
@@ -23,4 +25,6 @@ public:
 	std::vector<Virus*> FluVirus::DoClone() override;
 	void DoDie() override;
 	void InitResistance() override;
+
+	void printDNA();
 };

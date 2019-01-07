@@ -3,12 +3,21 @@
 #include <vector>
 #include <iostream>
 
+using namespace std;
+
 FluVirus::FluVirus(){
 	this->DoBorn();
 	this->InitResistance();
 }
 
-FluVirus::~FluVirus(){}
+FluVirus::~FluVirus() {
+	DoDie();
+}
+
+FluVirus::FluVirus(const FluVirus *fluVirus) : Virus(fluVirus)
+{
+	this->m_Color = fluVirus->m_Color;
+}
 
 void FluVirus::set_m_Color(int color)
 {
@@ -27,6 +36,7 @@ enum color
 
 void FluVirus::DoBorn()
 {
+	fflush(stdin);
 	this->LoadADNInformation​();
 	int random = rand() % 2 + 1;
 	if (random == 1)
@@ -42,8 +52,8 @@ void FluVirus::DoBorn()
 vector<Virus*> FluVirus::DoClone()
 {
 	vector<Virus*> listVirus;
-	FluVirus *virus = new FluVirus(*this);
-	listVirus.push_back(virus);
+	FluVirus *fluVirus = new FluVirus(*this);
+	listVirus.push_back(fluVirus);
 	return listVirus;
 
 }
@@ -60,9 +70,17 @@ void FluVirus::InitResistance()
 		int random = rand() % 6 + 10;
 		this->set_m_resistance(random);
 	}
-	if (m_Color == 2)
+	else if (m_Color == 2)
 	{
 		int random = rand() % 11 + 10;
 		this->set_m_resistance(random);
+	}
+}
+
+void FluVirus::printDNA()
+{
+	for (int i = 1; i < 48; i++)
+	{
+		cout << *(this->get_m_dna() + i);
 	}
 }
