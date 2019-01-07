@@ -10,8 +10,14 @@ DengueVirus::DengueVirus(){
 	this->InitResistance();
 }
 
+DengueVirus::DengueVirus(const DengueVirus *denVirus) : Virus(denVirus)
+{
+	this->m_protein = denVirus->m_protein;
+}
 
-DengueVirus::~DengueVirus(){}
+DengueVirus::~DengueVirus(){
+	DoDie();
+}
 
 void DengueVirus::set_m_protein(string c)
 {
@@ -25,7 +31,9 @@ string DengueVirus::get_m_protein()
 void DengueVirus::DoBorn()
 {
 	this->LoadADNInformation​();
+
 	int random_protein = rand() % 3 + 1;
+
 	if (random_protein == 1)
 	{
 		this->m_protein = "NS3";
@@ -43,8 +51,10 @@ void DengueVirus::DoBorn()
 std::vector<Virus*> DengueVirus::DoClone()
 {
 	vector<Virus*> listVirus;
-	DengueVirus *dengue_virus = new DengueVirus(*this);
-	listVirus.push_back(dengue_virus);
+	DengueVirus *dengueVirus1 = new DengueVirus(*this);
+	listVirus.push_back(dengueVirus1);
+	DengueVirus *dengueVirus2 = new DengueVirus(*this);
+	listVirus.push_back(dengueVirus2);
 	return listVirus;
 }
 

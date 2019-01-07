@@ -15,6 +15,8 @@ public:
 	DengueVirus();
 	~DengueVirus();
 
+	DengueVirus::DengueVirus(const DengueVirus *);
+
 	//DengueVirus(const DengueVirus &Virus);
 
 	void set_m_protein(string);
