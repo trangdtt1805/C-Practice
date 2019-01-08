@@ -14,7 +14,7 @@ private:
 
 public:
 	FluVirus();
-	~FluVirus();
+	virtual ~FluVirus();
 	
 	FluVirus(const FluVirus *);
 

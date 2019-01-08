@@ -36,7 +36,6 @@ int Virus::get_m_resistance()
 	return m_resistance;
 }
 
-
 void Virus::LoadADNInformation​()
 {
 	std::fstream infile;
@@ -49,6 +48,7 @@ void Virus::LoadADNInformation​()
 		getline(infile, c);
 		const char* str_adn = c.c_str();
 		m_dna = const_cast<char*>(str_adn);
+		
 	}
 
 	infile.close();

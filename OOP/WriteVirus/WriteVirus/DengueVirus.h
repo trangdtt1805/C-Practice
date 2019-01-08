@@ -13,7 +13,7 @@ private:
 	string m_protein;
 public:
 	DengueVirus();
-	~DengueVirus();
+	virtual ~DengueVirus();
 
 	DengueVirus::DengueVirus(const DengueVirus *);
 

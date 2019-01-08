@@ -14,7 +14,7 @@ private:
 	int m_state;
 public:
 	Patient();
-	~Patient();
+	virtual ~Patient();
 
 	void set_m_resistance(int);
 	int get_m_resistance();
@@ -24,7 +24,7 @@ public:
 
 	void InitResistance();
 	void DoStart();
-	void TakeMedicine(int);
+	void TakeMedicine();
 	void DoDie();
 
 	void DeleteListVirus();

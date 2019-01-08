@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{087EEC14-DC48-4B32-A8EF-69E946D022FB}</ProjectGuid>
-    <RootNamespace>WriteVirus</RootNamespace>
+    <ProjectGuid>{4AA13E0D-3CAB-4434-9311-804C248636CE}</ProjectGuid>
+    <RootNamespace>vd</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -74,11 +74,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\VLD\include</AdditionalIncludeDirectories>
     </ClCompile>
-    <Link>
-      <AdditionalLibraryDirectories>C:\VLD\lib\Win32</AdditionalLibraryDirectories>
-    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -114,17 +110,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="DengueVirus.h" />
-    <ClInclude Include="FluVirus.h" />
-    <ClInclude Include="Patient.h" />
-    <ClInclude Include="Virus.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="DengueVirus.cpp" />
-    <ClCompile Include="FluVirus.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Patient.cpp" />
-    <ClCompile Include="Virus.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -11,7 +11,7 @@ private:
 
 public:
 	Virus();
-	~Virus();
+	virtual ~Virus();
 
 	Virus(const Virus *);
 
