@@ -96,7 +96,6 @@ void Patient::TakeMedicine()
 		i--;
 	}
 
-	//i = this->m_virusList.size();
 	int sumResistanceVirus = 0;
 	for each (auto var in m_virusList)
 	{
@@ -116,7 +115,7 @@ void Patient::DoDie()
 
 	this->m_state = 0;
 
-	//cout << "Patient died " << endl;
+	cout << "Patient died " << endl;
 }
 
 //void Patient::DeleteListVirus()
