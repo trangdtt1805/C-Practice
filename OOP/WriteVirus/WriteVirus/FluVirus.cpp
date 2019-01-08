@@ -11,7 +11,6 @@ FluVirus::FluVirus(){
 }
 
 FluVirus::~FluVirus() {
-	DoDie();
 }
 
 FluVirus::FluVirus(const FluVirus *fluVirus) : Virus(fluVirus)
@@ -52,7 +51,7 @@ void FluVirus::DoBorn()
 vector<Virus*> FluVirus::DoClone()
 {
 	vector<Virus*> listVirus;
-	FluVirus *fluVirus = new FluVirus(*this);
+	FluVirus *fluVirus = new FluVirus(this);
 	listVirus.push_back(fluVirus);
 	return listVirus;
 
@@ -61,6 +60,7 @@ vector<Virus*> FluVirus::DoClone()
 void FluVirus::DoDie()
 {
 	delete this;
+
 }
 
 void FluVirus::InitResistance()

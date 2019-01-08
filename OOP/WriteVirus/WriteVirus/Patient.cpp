@@ -11,14 +11,17 @@ Patient::Patient() {
 	this->DoStart();
 }
 
+
 Patient::~Patient() {
 	DoDie();
 }
+
 
 enum virus {
 	Flu = 1,
 	Dengue = 2
 };
+
 
 enum state
 {
@@ -26,26 +29,31 @@ enum state
 	ALIVE = 1
 };
 
+
 void Patient::set_m_resistance(int m_resistance)
 {
 	this->m_resistance = m_resistance;
 }
+
 
 int Patient::get_m_resistance()
 {
 	return m_resistance;
 }
 
+
 int Patient::get_m_state()
 {
 	return m_state;
 }
+
 
 void Patient::InitResistance()
 {
 	int random = rand() % (9000 - 1000 + 1) + 1000;
 	this->m_resistance = random;
 }
+
 
 void Patient::DoStart()
 {
@@ -67,6 +75,7 @@ void Patient::DoStart()
 		}
 	}
 }
+
 
 void Patient::TakeMedicine()
 {
@@ -90,6 +99,7 @@ void Patient::TakeMedicine()
 		}
 		else
 		{
+			delete m_virusList[i];
 			this->m_virusList.erase(this->m_virusList.begin() + i);
 
 		}
@@ -114,8 +124,11 @@ void Patient::DoDie()
 {
 
 	this->m_state = 0;
-
-	cout << "Patient died " << endl;
+	for (int i = 0; i < m_virusList.size(); i++)
+	{
+		delete m_virusList[i];
+	}
+	m_virusList.clear();
 }
 
 //void Patient::DeleteListVirus()

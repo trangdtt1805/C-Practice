@@ -16,7 +16,6 @@ DengueVirus::DengueVirus(const DengueVirus *denVirus) : Virus(denVirus)
 }
 
 DengueVirus::~DengueVirus(){
-	DoDie();
 }
 
 void DengueVirus::set_m_protein(string c)
@@ -51,9 +50,9 @@ void DengueVirus::DoBorn()
 std::vector<Virus*> DengueVirus::DoClone()
 {
 	vector<Virus*> listVirus;
-	DengueVirus *dengueVirus1 = new DengueVirus(*this);
+	DengueVirus *dengueVirus1 = new DengueVirus(this);
 	listVirus.push_back(dengueVirus1);
-	DengueVirus *dengueVirus2 = new DengueVirus(*this);
+	DengueVirus *dengueVirus2 = new DengueVirus(this);
 	listVirus.push_back(dengueVirus2);
 	return listVirus;
 }

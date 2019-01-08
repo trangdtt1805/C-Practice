@@ -11,12 +11,14 @@ Virus::Virus(){
 
 Virus::Virus(const Virus *virus)
 {
-	this->m_dna = virus->m_dna;
+	this->m_dna = new char[250];
+	/*m_dna[0] = 'a';
+	m_dna[1] = '\0';*/
 	this->m_resistance = virus->m_resistance;
 }
 
 Virus::~Virus(){
-	delete this;
+	delete m_dna;
 }
 
 void Virus::set_m_dna(char* m_dna)
@@ -41,14 +43,11 @@ void Virus::LoadADNInformation​()
 	std::fstream infile;
 	infile.open("E:/Internship.Tools/Train/C-Practice/OOP/WriteVirus/ATGX.bin", std::ios::in);
 	
-	if (infile.fail()) cout << "Don't find file";
-	while (!infile.eof())
+	this->m_dna = new char[255];
+
+	if (infile)
 	{
-		string c;
-		getline(infile, c);
-		const char* str_adn = c.c_str();
-		m_dna = const_cast<char*>(str_adn);
-		
+		infile >> this->m_dna;
 	}
 
 	infile.close();

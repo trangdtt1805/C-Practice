@@ -16,7 +16,7 @@ int main()
 
 	Patient *p = new Patient;
 	char t = '1';
-	while (p->get_m_state() == 1 && t == '1')
+	while (p->get_m_state() == 1)
 	{
 		printf("Take Medicine (0 = NO, 1 = YES) : ");
 		cin >> t;
@@ -24,6 +24,11 @@ int main()
 		{
 			p->TakeMedicine();
 			
+		}
+		if ( t == '0' )
+		{
+			delete p;
+			break;
 		}
 	}
 
